@@ -29,16 +29,19 @@ Jenkins:
 - Виконати shell > [Копіювання (див нижче)]
 - Виконати shell > ./gradlew build
 
-Тепер треба подружить один контейнер докера з іншим, тобто з контейнера Jenkins-a по ssh зайти на контейнер Ubuntu куди буду копіювати зібраний Jenkins-ом .jar
+Тепер треба подружить один контейнер докера з іншим, тобто обмінятись своїми `/.ssh/id_rsa.pub`
+
+Як мінімум віддати ключ з Jenkins-а
 
 `ssh user@178.214.220.16 -p2222`
 
-щоб згенерувався fingerprint
+Команда для копіювання
+`scp -P 2222 spring-boot-app.jar max@178.214.220.16:/folder`
 
-Команда для копіювання (чомусь не спрацьовує з Jenkins на Ubuntu)
-`sshpass -p 'password' scp -P 2222 /var/lib/jenkins/workspace/project/build/libs/spring-boot-app.jar max@178.214.220.16:/folder`
-
-test
+```text
+ssh-keygen -o
+ssh-copy-id -i /root/.ssh/id_rsa.pub -p2222 max@178.214.220.16
+```
 ---
 
 # login - `user`
