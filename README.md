@@ -42,7 +42,7 @@ Jenkins:
 ssh-keygen -o
 ssh-copy-id -i /root/.ssh/id_rsa.pub -p2222 artem@178.214.220.16
 ```
-test
+finnaly
 
 ---
 
