@@ -38,6 +38,7 @@ Jenkins:
 Команда для копіювання (чомусь не спрацьовує з Jenkins на Ubuntu)
 `sshpass -p 'password' scp -P 2222 /var/lib/jenkins/workspace/project/build/libs/spring-boot-app.jar max@178.214.220.16:/folder`
 
+test
 ---
 
 # login - `user`
