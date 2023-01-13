@@ -35,14 +35,19 @@ Jenkins:
 
 `ssh user@178.214.220.16 -p2222`
 
-Команда для копіювання
-`scp -P 2222 spring-boot-app.jar artem@178.214.220.16:/folder`
-
 ```text
 ssh-keygen -o
 ssh-copy-id -i /root/.ssh/id_rsa.pub -p2222 artem@178.214.220.16
 ```
-finnaly
+
+У контейнері є користувач `jenkins` для нього теж треба генерувати ключі і віддати на `user@178.214.220.16 -p2222`
+
+Також `scp` чомусь працює тільки з абсолютними шляхами, тобто:
+
+`scp -P 2222 /var/lib/jenkins/workspace/project/build/libs/spring-boot-app.jar artem@178.214.220.16:/folder`
+
+В ідеалі команда для копіювання
+`scp -P 2222 spring-boot-app.jar artem@178.214.220.16:/folder`
 
 ---
 
