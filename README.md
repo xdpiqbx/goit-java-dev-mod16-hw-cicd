@@ -36,12 +36,13 @@ Jenkins:
 `ssh user@178.214.220.16 -p2222`
 
 Команда для копіювання
-`scp -P 2222 spring-boot-app.jar max@178.214.220.16:/folder`
+`scp -P 2222 spring-boot-app.jar artem@178.214.220.16:/folder`
 
 ```text
 ssh-keygen -o
-ssh-copy-id -i /root/.ssh/id_rsa.pub -p2222 max@178.214.220.16
+ssh-copy-id -i /root/.ssh/id_rsa.pub -p2222 artem@178.214.220.16
 ```
+test
 
 ---
 
