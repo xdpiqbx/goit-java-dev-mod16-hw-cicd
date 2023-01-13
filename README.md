@@ -1,4 +1,31 @@
-# goit-java-dev-mod15-hw-todo-notes-spring-security
+# goit-java-dev-mod16-hw-cicd
+
+[Встановив Jenkins](https://www.jenkins.io/doc/book/installing/linux/) у Docker контейнер з Ubuntu на свій NAS [Мій Jenkins](http://178.214.220.16:8808/)
+
+Попередньо:
+- apt-get install zip
+- apt-get install vim
+- apt-get install openssh-server
+поправив `vi /etc/ssh/sshd_config`
+```text
+Port 2222
+PasswordAuthentication yes
+AllowUsers root artem
+```
+- apt-get install openjdk-17-jre
+- apt-get install git 
+
+Була проблемка з `gradlew`
+`fix` -> `git update-index --chmod=+x gradlew`
+
+Jenkins:
+- Створити `item`
+- GitHub project
+- Git
+- Branch Specifier (blank for 'any')
+- Выполнить команду shell > ./gradlew build
+
+GitHub hook trigger for GITScm polling
 
 ---
 
