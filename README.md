@@ -14,6 +14,7 @@ AllowUsers root artem
 ```
 - apt-get install openjdk-17-jre
 - apt-get install git 
+- apt-get install sshpass
 
 Була проблемка з `gradlew`
 `fix` -> `git update-index --chmod=+x gradlew`
@@ -23,9 +24,19 @@ Jenkins:
 - GitHub project
 - Git
 - Branch Specifier (blank for 'any')
-- Выполнить команду shell > ./gradlew build
+- GitHub hook trigger for GITScm polling
+  - http://178.214.220.16:8808/github-webhook/
+- Виконати shell > [Копіювання (див нижче)]
+- Виконати shell > ./gradlew build
 
-GitHub hook trigger for GITScm polling
+Тепер треба подружить один контейнер докера з іншим, тобто з контейнера Jenkins-a по ssh зайти на контейнер Ubuntu куди буду копіювати зібраний Jenkins-ом .jar
+
+`ssh user@178.214.220.16 -p2222`
+
+щоб згенерувався fingerprint
+
+Команда для копіювання
+`sshpass -p 'P@ssw0r&' scp -P 2222 spring-boot-app.jar max@178.214.220.16:/folder`
 
 ---
 
