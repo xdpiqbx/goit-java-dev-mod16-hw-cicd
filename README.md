@@ -98,7 +98,7 @@ WantedBy=multi-user.target
 ```bash
 [Path]
 Unit=spring-boot-app-watcher.service
-PathChanged=/dpiqb
+PathChanged=/dpiqb/spring-boot-app.jar
 
 [Install]
 WantedBy=multi-user.target
