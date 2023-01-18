@@ -103,6 +103,16 @@ PathChanged=/dpiqb/spring-boot-app.jar
 [Install]
 WantedBy=multi-user.target
 ```
+[Unit]
+Description=Monitor the file spring-boot-app.jar changes
+
+[Path]
+PathChanged=/dpiqb/spring-boot-app.jar
+Unit=spring-boot-app-watcher.service
+StartLimitIntervalSec=500
+
+[Install]
+WantedBy=multi-user.target
 
 #### spring-boot-app-watcher.service
 
@@ -145,6 +155,18 @@ ERROR:systemctl: dbus.service: Executable path is not absolute, ignoring:
 На Jenkins
 - service ssh start
 - service jenkins start
+
+> В Docker контейнері не стартує `spring-boot-app-watcher.path`, тому використовую 
+
+```bash
+#!/bin/bash
+
+while inotifywait -e modify /dpiqb; do
+  systemctl restart spring-boot-app-watcher.service
+  echo "application updated. service restarted"
+done
+```
+
 ---
 
 # login - `user`
