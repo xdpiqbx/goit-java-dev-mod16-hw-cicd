@@ -178,13 +178,15 @@ echo "bash /root/restart-watcher.sh" >> /etc/bash.bashrc
 
 Але краще створю сервіс:
 
-#### spring-boot-app-watcher-restart
+#### spring-boot-app-watcher-restart-daemon
 
-`touch /etc/systemd/system/spring-boot-app-watcher-restart.service`
+`touch /etc/systemd/system/spring-boot-app-watcher-restart-daemon.service`
 
 ```bash
 [Unit]
 Description=This script will restart spring-boot-app-watcher.service if application will updated
+After=spring-boot-app-watcher.service
+Requires=spring-boot-app-watcher.service
 StartLimitIntervalSec=10
 StartLimitBurst=5
 
@@ -195,6 +197,7 @@ ExecStart=/usr/bin/bash /root/restart-watcher.sh
 [Install]
 WantedBy=multi-user.target
 ```
+
 
 ---
 
