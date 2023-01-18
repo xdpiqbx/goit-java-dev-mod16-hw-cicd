@@ -156,15 +156,44 @@ ERROR:systemctl: dbus.service: Executable path is not absolute, ignoring:
 - service ssh start
 - service jenkins start
 
+---
+
 > В Docker контейнері не стартує `spring-boot-app-watcher.path`, тому використовую 
+
+`apt-get install inotify-tools`
 
 ```bash
 #!/bin/bash
 
 while inotifywait -e modify /dpiqb; do
   systemctl restart spring-boot-app-watcher.service
-  echo "application updated. service restarted"
+  sleep 5s
+  echo "Application updated. service restarted"
 done
+```
+
+Або тупо додаю до `bash.bashrc`
+
+echo "bash /root/restart-watcher.sh" >> /etc/bash.bashrc
+
+Але краще створю сервіс:
+
+#### spring-boot-app-watcher-restart
+
+`touch /etc/systemd/system/spring-boot-app-watcher-restart.service`
+
+```bash
+[Unit]
+Description=This script will restart spring-boot-app-watcher.service if application will updated
+StartLimitIntervalSec=10
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash /root/restart-watcher.sh
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ---
